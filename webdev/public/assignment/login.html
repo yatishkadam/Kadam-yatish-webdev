@@ -2,23 +2,157 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="container">
-        <h1>Login</h1>
-        <input type="text"
-               class="form-control"
-               placeholder="username"/>
-        <input type="password"
-               class="form-control"
-               placeholder="password"/>
-        <a class="btn btn-primary btn-block"
-           href="profile.html">Login</a>
-        <a class="btn btn-success btn-block"
-           href="register.html">Register</a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Web-dev 2017</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="profile.html"><span class="glyphicon glyphicon-home"> Home</span></a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="card card-container">
+        <div class="row">
+            <div>
+                <form role="form">
+                    <fieldset>
+                        <h2 class="text-center">Login</h2>
+                        <hr class="colorgraph">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <span class="form-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" id="username" class="form-control" placeholder="E.g yatish_kadam">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <span class="form-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="oxckasda">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-3 col-md-3">
+                        <span class="button-checkbox">
+                            <button type="button" class="btn" data-color="info" tabindex="7">Remember me</button>
+                            <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+                        </span>
+                            </div>
+                            <div class="col-xs-8 col-sm-9 col-md-9">
+                                <a href="" class="btn btn-link pull-right">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-6">
+                                <a href="websitePages/website-list.html" class="btn btn-lg btn-success btn-block">Sign in</a>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <a href="register.html" class="btn btn-lg btn-primary btn-block">Register</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text navbar-right" style="margin-right: 10px;">
+            <a href=""><span class="glyphicon glyphicon-grain"></span> </a>
+        </div>
+    </div>
+</nav>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<!--<script src="../../assets/js/docs.min.js"></script>-->
+<script>
+    $(function () {
+        $('.button-checkbox').each(function () {
+
+            // Settings
+            var $widget = $(this),
+                $button = $widget.find('button'),
+                $checkbox = $widget.find('input:checkbox'),
+                color = $button.data('color'),
+                settings = {
+                    on: {
+                        icon: 'glyphicon glyphicon-check'
+                    },
+                    off: {
+                        icon: 'glyphicon glyphicon-unchecked'
+                    }
+                };
+
+            // Event Handlers
+            $button.on('click', function () {
+                $checkbox.prop('checked', !$checkbox.is(':checked'));
+                $checkbox.triggerHandler('change');
+                updateDisplay();
+            });
+            $checkbox.on('change', function () {
+                updateDisplay();
+            });
+
+            // Actions
+            function updateDisplay() {
+                var isChecked = $checkbox.is(':checked');
+
+                // Set the button's state
+                $button.data('state', (isChecked) ? "on" : "off");
+
+                // Set the button's icon
+                $button.find('.state-icon')
+                    .removeClass()
+                    .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+                // Update the button's color
+                if (isChecked) {
+                    $button
+                        .removeClass('btn-default')
+                        .addClass('btn-' + color + ' active');
+                }
+                else {
+                    $button
+                        .removeClass('btn-' + color + ' active')
+                        .addClass('btn-default');
+                }
+            }
+
+            // Initialization
+            function init() {
+
+                updateDisplay();
+
+                // Inject the icon if applicable
+                if ($button.find('.state-icon').length == 0) {
+                    $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
+                }
+            }
+            init();
+        });
+    });
+</script>
+
+
 </body>
 </html>
