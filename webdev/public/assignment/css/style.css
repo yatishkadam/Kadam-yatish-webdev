@@ -14,6 +14,7 @@ body {
     background: green;
     border-radius: 5px;
 }
+
 .card-container.card {
     margin-top: 40px;
     max-width: 75%;
@@ -21,6 +22,42 @@ body {
     padding-bottom: 30px;
     padding-left: 35px;
     padding-right: 35px;
+}
+.card-container1.card {
+    margin-top: 10px;
+    padding-top: 35px;
+    padding-bottom: 30px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+.card-container2.card{
+    padding: 15px;
+}
+.wd-widget > .wd-widget-toolbar{
+    position: absolute;
+    right: 30px;
+    background:white;
+    opacity: 0.9;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+}
+.wd-widget-toolbar1{
+    position: absolute;
+    right: 0px;
+    background:white;
+    opacity: 0.9;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+}
+.wd-widget{
+    margin-bottom: 10px;
+}
+.wd-widget > img{
+    width:100%;
+}
+
+.gly-right{
+    margin-right: 15px;
 }
 /*
  * Card component
@@ -49,4 +86,17 @@ nav.navbar{
     height:300px;
     overflow:hidden;
     overflow-y:scroll;
+}
+.listov1{
+    height:350px;
+    overflow:hidden;
+    overflow-y:scroll;
+}
+
+
+/*
+*Register page
+ */
+.alreadyacc{
+    margin-right: 2px;
 }
