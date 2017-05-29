@@ -35,7 +35,8 @@
             <div class="col-lg-4 hidden-md hidden-sm hidden-xs">
                 <div class="listov1">
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="website in model.websites"><a href="">{{website.name}}</a>
+                        <li ng-repeat="website in model.websites" class="list-group-item">
+                            <a href="#!/user/{{model.userId}}/websites/{{website._id}}/pages">{{website.name}}</a>
                             <a href="#!/user/{{model.userId}}/websites/{{website._id}}">
                                 <span class="pull-right glyphicon glyphicon-cog"></span></a></li>
                     </ul>

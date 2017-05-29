@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="card card-container2">
         <h4>Widgets
-            <a href="widget-chooser.view.client.html">
+            <a href="#!/user/{{model.userId}}/websites/{{model.websiteId}}/pages/{{model.pageId}}/widget/new">
                 <span class="glyphicon glyphicon-plus-sign pull-right"></span>
             </a></h4>
         <hr class="colorgraph">
@@ -35,7 +35,6 @@
                 <div ng-switch-when ="IMAGE">
                     <img ng-src="{{widget.url}}" width="{{widget.width}}">
                 </div>
-
             </div>
 
         </div>

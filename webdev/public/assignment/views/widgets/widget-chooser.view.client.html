@@ -4,16 +4,21 @@
         <h4>Choose Widget</h4>
         <hr class="colorgraph">
         <ul class="list-group">
-            <li class="list-group-item"><a href="widget-heading.view.client.html">Header </a></li>
-            <li class="list-group-item"><a href="widget-heading.view.client.html">Label </a></li>
-            <li class="list-group-item"><a href="widget-heading.view.client.html">Html </a></li>
-            <li class="list-group-item"><a href="widget-heading.view.client.html">Text Input </a></li>
-            <li class="list-group-item"><a href="widget-heading.view.client.html">Link </a></li>
-            <li class="list-group-item"><a href="widget-heading.view.client.html">Button </a></li>
-            <li class="list-group-item"><a href="widget-image.view.client.html">Image </a></li>
-            <li class="list-group-item"><a href="widget-youtube.view.client.html">Youtube </a></li>
-            <li class="list-group-item"><a href="widget-heading.view.client.html">Data Table </a></li>
-            <li class="list-group-item"><a href="widget-heading.view.client.html">Repeater </a></li>
+            <li class="list-group-item">
+                <a ng-click= "model.createWidgetHeader(widget)" class="btn btn-link">
+                    Header
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a ng-click= "model.createWidgetImage(widget)" class="btn btn-link">
+                    Image
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a ng-click= "model.createWidgetYoutube(widget)" class="btn btn-link">
+                    YouTube
+                </a>
+            </li>
         </ul>
     </div>
 </div>

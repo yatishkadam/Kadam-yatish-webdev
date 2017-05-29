@@ -23,6 +23,34 @@ function widgetService() {
     this.updateWidget=updateWidget;
     this.deleteWidget=deleteWidget;
     this.createWidget=createWidget;
+    this.createWidgetHeader=createWidgetHeader;
+    this.createWidgetImage=createWidgetImage;
+    this.createWidgetYoutube=createWidgetYoutube;
+
+
+    function createWidgetHeader(pageId, widget1) {
+        widget1 = { "_id": "", "widgetType": "HEADING", "pageId": "", "size": "", "text": "", "name": ""};
+        widget1._id = (new Date()).getTime() + "";
+        widget1.pageId = pageId;
+        widget.push(widget1);
+        return widget1._id;
+    }
+
+    function createWidgetImage(pageId, widget1) {
+        widget1 = { "_id": "", "widgetType": "IMAGE", "pageId": "", "width": "", "url": "", "text": "", "name": "" };
+        widget1._id = (new Date()).getTime() + "";
+        widget1.pageId = pageId;
+        widget.push(widget1);
+        return widget1._id;
+    }
+
+    function createWidgetYoutube(pageId, widget1) {
+        widget1 = { "_id": "", "widgetType": "YOUTUBE", "pageId": "", "width": "", "url": "", "text": "", "name": ""};
+        widget1._id = (new Date()).getTime() + "";
+        widget1.pageId = pageId;
+        widget.push(widget1);
+        return widget1._id;
+    }
 
     function findWidgetsByPageId(pageId) {
         var results=[];
@@ -55,9 +83,10 @@ function widgetService() {
     }
 
 
-    function createWidget(pageId,widgets) {
+    function createWidget(widgets,pageId,widgetType) {
         widgets._id=(new Date().getTime())+"";
         widgets.pageId=pageId;
+        widget.widgetType=widgetType;
         widget.push(widgets);
     }
 

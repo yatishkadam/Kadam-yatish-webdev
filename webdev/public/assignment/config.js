@@ -58,6 +58,11 @@
                 controller:'widgetListController',
                 controllerAs:'model'
             })
+            .when('/user/:userId/websites/:websiteId/pages/:pageId/widget/new',{
+                templateUrl:'views/widgets/widget-chooser.view.client.html',
+                controller:'widgetNewController',
+                controllerAs:'model'
+            })
             .when('/user/:userId/websites/:websiteId/pages/:pageId/widget/:widgetId',{
                 templateUrl:'views/widgets/widget-edit.view.client.html',
                 controller:'widgetEditController',

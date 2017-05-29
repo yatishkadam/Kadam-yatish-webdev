@@ -7,9 +7,12 @@
         var model = this;
         model.userid = $routeParams['userId'];
 
-        model.user = userService.findUserById(model.userid);
+        model.user = angular.copy(userService.findUserById(model.userid));
+        model.updateUser=updateUser;
 
-
+        function updateUser(user) {
+            userService.updateUser(model.userid,user);
+        }
     }
 
 })();

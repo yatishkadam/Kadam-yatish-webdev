@@ -6,9 +6,9 @@
     function userService() {
         var users=[
             {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder",  email: ""  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley",  email: ""  },
+            {_id: "456", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley",  email: ""  },
             {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia",  email: ""  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: ""  }
+            {_id: "234", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: ""  }
         ];
 
         // api that is provided to access the functionality listed below
@@ -16,7 +16,8 @@
             findUserById:findUserById,
             findUserByCredentials:findUserByCredentials,
             findUserByUsername:findUserByUsername,
-            createUser:createUser
+            createUser:createUser,
+            updateUser:updateUser
 
         };
         return api;
@@ -57,6 +58,11 @@
             }
             return null;
 
+        }
+        function updateUser(userId,user) {
+                var oldUser= findUserById(userId);
+                var index=users.indexOf(oldUser);
+                users[index]=user;
         }
     }
 })();

@@ -8,18 +8,8 @@
             { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
             { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
             { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" },
-            { "_id": "321", "name": "Post 1", "websiteId": "123", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "123", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "123", "description": "Lorem" },
-            { "_id": "321", "name": "Post 1", "websiteId": "234", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "234", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "234", "description": "Lorem" },
-            { "_id": "321", "name": "Post 1", "websiteId": "789", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "789", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "789", "description": "Lorem" },
-            { "_id": "321", "name": "Post 1", "websiteId": "321", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "321", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "321", "description": "Lorem" }
+            { "_id": "523", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
+
         ];
         this.findAllPagesForWebsite = findAllPagesForWebsite;
         this.findPageById= findPageById;
@@ -30,9 +20,9 @@
         function findAllPagesForWebsite(websiteId) {
             var results=[];
             for (var w in pages){
-                if (pages[w].websiteId === websiteId) {
+                if(websiteId===pages[w].websiteId){
                     results.push(pages[w]);
-}
+                }
             }
             return results;
 
@@ -60,7 +50,7 @@
 
         function createPage(page,websiteId) {
             page._id=(new Date().getTime())+"";
-            page.pageId=websiteId;
+            page.websiteId=websiteId;
             pages.push(page);
         }
     }
