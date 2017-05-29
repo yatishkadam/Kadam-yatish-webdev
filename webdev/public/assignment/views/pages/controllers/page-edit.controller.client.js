@@ -11,9 +11,7 @@
         model.pageId=$routeParams['pageId'];
 
         function init() {
-            model.page = pageService.findPageById(model.pageId);
-            model.opage = angular.copy(model.page);
-
+            model.page = angular.copy(pageService.findPageById(model.pageId));
         }
         init();
         model.updatePage=updatePage;

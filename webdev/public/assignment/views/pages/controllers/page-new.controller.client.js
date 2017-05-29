@@ -10,7 +10,7 @@
         model.websiteId=$routeParams['websiteId'];
 
         function init() {
-            model.pages = pageService.findAllPagesForWebsite(model.websiteId);
+            model.pages = angular.copy(pageService.findAllPagesForWebsite(model.websiteId));
         }
         init();
         model.createPage=createPage;

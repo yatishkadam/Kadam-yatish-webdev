@@ -10,9 +10,8 @@
         model.websiteId=$routeParams['websiteId'];
 
         function init() {
-            model.websites = websiteService.findAllwebsiteForUser(model.userId);
-            model.website=websiteService.findWebsiteById(model.websiteId);
-            model.owebsite = angular.copy(model.website);
+            model.websites = angular.copy(websiteService.findAllwebsiteForUser(model.userId));
+            model.website = angular.copy(websiteService.findWebsiteById(model.websiteId));
 
         }
         init();
