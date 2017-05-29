@@ -1,0 +1,45 @@
+
+<nav class="navbar navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#!/user/{{model.userId}}" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"> Profile</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="card card-container1">
+        <h4>Website List <a  href="#!/user/{{model.userId}}/websites/new">
+            <span class="glyphicon glyphicon-plus-sign pull-right" style="margin-right: 15px"></span></a></h4>
+    <ul class="list-group">
+        <li class="active list-group-item">Name<span class="pull-right">Edit</span></li>
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="#!/user/{{model.userId}}/websites/{{website._id}}/pages">{{website.name}}</a>
+            <a href="#!/user/{{model.userId}}/websites/{{website._id}}">
+                <span class="pull-right glyphicon glyphicon-cog"></span></a></li>
+    </ul>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-custom navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text navbar-right" style="margin-right: 10px;">
+            <a href=""><span class="glyphicon glyphicon-grain"></span> </a>
+        </div>
+    </div>
+</nav>

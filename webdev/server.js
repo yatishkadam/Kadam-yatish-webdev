@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var myApp = require('./angular/app');
+var myApp = require('./blogserver/app');
 myApp(app);
 
 var bodyParser = require('body-parser');

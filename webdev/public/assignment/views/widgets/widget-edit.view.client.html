@@ -1,0 +1,14 @@
+<div ng-include="views/widgets/common.html"></div>
+
+<div ng-switch="model.widget.widgetType">
+
+    <div ng-switch-when="HEADING">
+        <div ng-include="'views/widgets/widget-heading.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <div ng-include="'views/widgets/widget-image.view.client.html'"></div>
+    </div>
+    <div ng-switch-when="YOUTUBE">
+        <div ng-include="'views/widgets/widget-youtube.view.client.html'"></div>
+    </div>
+</div>
