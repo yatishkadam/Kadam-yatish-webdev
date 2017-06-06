@@ -3,66 +3,77 @@
         .module("WAM")
         .factory('userService',userService);
 
-    function userService() {
-        var users=[
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder",  email: ""  },
-            {_id: "456", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley",  email: ""  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia",  email: ""  },
-            {_id: "234", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: ""  }
-        ];
-
+    function userService($http) {
         // api that is provided to access the functionality listed below
         var api={
             findUserById:findUserById,
             findUserByCredentials:findUserByCredentials,
             findUserByUsername:findUserByUsername,
             createUser:createUser,
-            updateUser:updateUser
-
+            updateUser:updateUser,
+            deleteUser:deleteUser
         };
         return api;
 
+        //function to delete
+        function deleteUser(userId) {
+            var url='/api/user/'+userId;
+            return $http.delete(url)
+                .then(function (response){
+                    return response.data;
+                    }
+                );
+        }
+
         //function to find the user given the user name and the password
         function findUserByCredentials(username,password) {
-            for (var u in users) {
-                user = users[u];
-                if (user.username === username && user.password === password) {
-                return user;
-                }
+            var url='/api/user?username='+username+"&password="+password;
+            return $http
+                .get(url)
+                .then(renderUser);
+            //return the user
+            function renderUser(response) {
+                return response.data;
             }
-            return null;
         }
+        //find user by username
         function findUserByUsername(username) {
-
-               var user = users.find(function (user) {
-                   return user.username===username;
-               });
-               if(typeof user==='undefined'){
-                   return null;
-               }
-               return user;
-        }
-        function createUser(newUser) {
-            newUser._id=(new Date().getTime()) +"";
-            users.push(newUser);
-            return newUser;
-        }
-
-
-        //function to find the user by id
-        function findUserById(userid) {
-            for (var u in users) {
-                if (users[u]._id === userid) {
-                    return users[u];
-                }
+            var url='/api/user?username='+username;
+            return $http.get(url)
+                .then(renderUser);
+            //return the user
+            function renderUser(response) {
+                return response.data;
             }
-            return null;
-
+        }
+        //create user
+        function createUser(newUser) {
+            var url= "/api/user";
+            return $http.post(url,newUser)
+                .then(renderUser);
+            //return the created user details
+            function renderUser(response) {
+                return response.data;
+            }
+        }
+        //function to find the user by id
+        function findUserById(userId) {
+            var url='/api/user/'+userId;
+            return $http.get(url)
+                .then(renderUser);
+            //return the user
+            function renderUser(response) {
+                return response.data;
+            }
         }
         function updateUser(userId,user) {
-                var oldUser= findUserById(userId);
-                var index=users.indexOf(oldUser);
-                users[index]=user;
+            var url='/api/user/'+userId;
+            return $http.put(url,user)
+                .then(renderUser);
+            //return the user
+            function renderUser(response) {
+                return response.data;
+            }
         }
     }
 })();

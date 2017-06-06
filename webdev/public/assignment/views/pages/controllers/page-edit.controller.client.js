@@ -11,20 +11,30 @@
         model.pageId=$routeParams['pageId'];
 
         function init() {
-            model.page = angular.copy(pageService.findPageById(model.pageId));
+            pageService.findPageById(model.pageId)
+                .then(renderPage);
+            function renderPage(page) {
+                model.page = angular.copy(page);
+            }
         }
         init();
         model.updatePage=updatePage;
         model.deletePage=deletePage;
 
         function updatePage(pageId,page) {
-            pageService.updatePage(pageId,page);
-            $location.url("/user/"+model.userId+"/websites/"+model.websiteId+"/pages");
+            pageService.updatePage(pageId,page)
+                .then(updatedPage);
+            function updatedPage() {
+                $location.url("/user/"+model.userId+"/websites/"+model.websiteId+"/pages");
+            }
         }
 
         function deletePage(pageId){
-            pageService.deletePage(pageId);
-            $location.url("/user/"+model.userId+"/websites/"+model.websiteId+"/pages");
+            pageService.deletePage(pageId)
+                .then(updateLocation);
+            function updateLocation() {
+                $location.url("/user/"+model.userId+"/websites/"+model.websiteId+"/pages");
+            }
         }
     }
 

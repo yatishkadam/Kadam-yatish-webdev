@@ -3,57 +3,65 @@
         .module("WAM")
         .service('websiteService',websiteService);
     
-    function websiteService() {
-        var websites=[
-            { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
-            { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
-            { "_id": "456", "name": "Gizmodo",     "developerId": "456", "description": "Lorem" },
-            { "_id": "890", "name": "Go",          "developerId": "123", "description": "Lorem" },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem" },
-            { "_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem" },
-            { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
-        ];
+    function websiteService($http) {
         this.findAllwebsiteForUser= findAllwebsiteForUser;
         this.findWebsiteById= findWebsiteById;
         this.updateWebsite=updateWebsite;
         this.deleteWebsite=deleteWebsite;
         this.createWebsite=createWebsite;
 
+
+        //function to render all the websites for a particular user
         function findAllwebsiteForUser(userId) {
-            var results=[];
-            for (var w in websites){
-                if(userId===websites[w].developerId){
-                    results.push(websites[w]);
-                }
+            var url="/api/websites/"+userId;
+            return $http.get(url)
+                .then(renderUser);
+            //return the websites
+            function renderUser(response) {
+                return response.data;
             }
-            return results;
 
         }
+        //find website given the website id
         function findWebsiteById(websiteId) {
-            for (var w in websites){
-                if(websiteId===websites[w]._id){
-                    return websites[w];
-                }
+            var url="/api/website/"+websiteId;
+            return $http.get(url)
+                .then(renderUser);
+            //return the websites
+            function renderUser(response) {
+                return response.data;
             }
-            return null;
         }
 
+        //update the website name and description
         function updateWebsite(websiteId, website) {
-            var oldWebsite= findWebsiteById(websiteId);
-            var index=websites.indexOf(oldWebsite);
-            websites[index]=website;
+            var url="/api/website/"+websiteId;
+            return $http.put(url,website)
+                .then(renderStatus);
+            function renderStatus(response) {
+                return response.data;
+            }
         }
+
+        //delete the website
         function deleteWebsite(websiteId) {
-            var oldWebsite= findWebsiteById(websiteId);
-            var index=websites.indexOf(oldWebsite);
-            websites.splice(index,1);
+            var url="/api/website/"+websiteId;
+            return $http.delete(url)
+                .then(renderStatus);
+            function renderStatus(response) {
+                return response.data;
+            }
         }
 
 
         function createWebsite(website,userId) {
-            website._id=(new Date().getTime())+"";
             website.developerId=userId;
-            websites.push(website);
+            var url="/api/user/"+userId+"/website";
+            return $http.post(url,website)
+                .then(renders);
+            function renders(response) {
+                return response.data;
+            }
         }
     }
 })();

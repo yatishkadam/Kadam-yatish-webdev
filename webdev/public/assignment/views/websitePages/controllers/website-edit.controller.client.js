@@ -10,8 +10,19 @@
         model.websiteId=$routeParams['websiteId'];
 
         function init() {
-            model.websites = angular.copy(websiteService.findAllwebsiteForUser(model.userId));
-            model.website = angular.copy(websiteService.findWebsiteById(model.websiteId));
+
+            //find all websites
+            websiteService.findAllwebsiteForUser(model.userId)
+                .then(renderWebsites);
+            function renderWebsites(websites) {
+                model.websites=websites;
+            }
+
+            //individual website
+            websiteService.findWebsiteById(model.websiteId)
+                .then(function (website) {
+                    model.website = angular.copy(website);
+                });
 
         }
         init();
@@ -19,13 +30,19 @@
         model.deleteWebsite=deleteWebsite;
 
         function updateWebsite(websiteId,website) {
-            websiteService.updateWebsite(websiteId,website);
-            $location.url("/user/"+model.userId+"/websites");
+            websiteService.updateWebsite(websiteId,website)
+                .then(render);
+            function render() {
+                $location.url("/user/"+model.userId+"/websites");
+            }
         }
 
         function deleteWebsite(websiteId){
-            websiteService.deleteWebsite(websiteId);
-            $location.url('/user/'+model.userId+'/websites');
+            websiteService.deleteWebsite(websiteId)
+                .then(render);
+            function render() {
+                $location.url("/user/"+model.userId+"/websites");
+            }
         }
     }
 

@@ -12,18 +12,24 @@
         model.createWidgetYoutube=createWidgetYoutube;
 
         function createWidgetHeader(widget) {
-            var widgetId = widgetService.createWidgetHeader(model.pageId, widget);
-            $location.url('/user/'+model.userId+'/websites/'+model.websiteId+'/pages/'+model.pageId+'/widget/'+widgetId);
+             widgetService.createWidgetHeader(model.pageId, widget)
+                .then(function (Id) {
+                    $location.url('/user/'+model.userId+'/websites/'+model.websiteId+'/pages/'+model.pageId+'/widget/'+Id);
+                });
         }
 
         function createWidgetImage(widget) {
-            var widgetId = widgetService.createWidgetImage(model.pageId, widget);
-            $location.url('/user/'+model.userId+'/websites/'+model.websiteId+'/pages/'+model.pageId+'/widget/'+widgetId);
+            widgetService.createWidgetImage(model.pageId, widget)
+                .then(function (Id) {
+                    $location.url('/user/' + model.userId + '/websites/' + model.websiteId + '/pages/' + model.pageId + '/widget/' + Id);
+                });
         }
 
         function createWidgetYoutube(widget) {
-            var widgetId =  widgetService.createWidgetYoutube(model.pageId, widget);
-            $location.url('/user/'+model.userId+'/websites/'+model.websiteId+'/pages/'+model.pageId+'/widget/'+widgetId);
+            widgetService.createWidgetYoutube(model.pageId, widget)
+            .then(function (Id) {
+                $location.url('/user/'+model.userId+'/websites/'+model.websiteId+'/pages/'+model.pageId+'/widget/'+Id);
+            });
         }
 
 

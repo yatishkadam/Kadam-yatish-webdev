@@ -9,15 +9,23 @@
         model.userId=$routeParams['userId'];
 
         function init() {
-            model.websites = websiteService.findAllwebsiteForUser(model.userId);
+            //find all the website for a user
+            websiteService.findAllwebsiteForUser(model.userId)
+                .then(renderWebsites);
+            function renderWebsites(websites) {
+                model.websites=websites;
+            }
         }
         init();
         model.createWebsite=createWebsite;
 
-
+        //create new website
         function createWebsite(website) {
-            websiteService.createWebsite(website,model.userId);
-            $location.url("/user/"+model.userId+"/websites");
+            websiteService.createWebsite(website,model.userId)
+                .then(renders);
+            function renders() {
+                $location.url("/user/"+model.userId+"/websites");
+            }
         }
 
     }

@@ -26,6 +26,8 @@
     <div class="container-fluid">
         <div class="card card-container">
             <h1 class="text-center">Profile</h1>
+            <div class="alert alert-info" ng-show="model.error">{{model.error}}</div>
+            <div class="alert alert-success" ng-show="model.sucess">{{model.sucess}}</div>
             <div class="row">
                 <div class="col-lg-3 col-sm-3 col-md-3">
                     <img src="./css/loginhead.jpg" class="img-circle img-responsive">
@@ -52,6 +54,8 @@
                         </div>
                     </form>
                     <a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block" href="">Save Changes</a>
+                    <a ng-click="model.unregister(model.userid)" class="btn btn-danger btn-block" href="">Delete Profile</a>
+
                 </div>
             </div>
         </div>

@@ -10,7 +10,12 @@
         model.pageId=$routeParams['pageId'];
 
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            //model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            widgetService.findWidgetsByPageId(model.pageId)
+                .then(renderWidget);
+            function renderWidget(widget){
+                model.widgets = widget;
+            }
             model.trust = trust;
             model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
             model.widgetUrl = widgetUrl;

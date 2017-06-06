@@ -3,14 +3,7 @@
         .module("WAM")
         .service('pageService',pageService);
 
-    function pageService() {
-        var pages=[
-            { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" },
-            { "_id": "523", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-
-        ];
+    function pageService($http) {
         this.findAllPagesForWebsite = findAllPagesForWebsite;
         this.findPageById= findPageById;
         this.updatePage=updatePage;
@@ -18,40 +11,50 @@
         this.createPage=createPage;
 
         function findAllPagesForWebsite(websiteId) {
-            var results=[];
-            for (var w in pages){
-                if(websiteId===pages[w].websiteId){
-                    results.push(pages[w]);
-                }
+            var url = "/api/pages/" + websiteId;
+            return $http.get(url)
+                .then(renderPages);
+            //return the websites
+            function renderPages(response) {
+                return response.data;
             }
-            return results;
-
         }
         function findPageById(pageId) {
-            for (var w in pages){
-                if(pageId===pages[w]._id){
-                    return pages[w];
-                }
+            var url = "/api/page/" + pageId;
+            return $http.get(url)
+                .then(renderPages);
+            //return the websites
+            function renderPages(response) {
+                return response.data;
             }
-            return null;
         }
 
         function updatePage(pageId, page) {
-            var oldpage= findPageById(pageId);
-            var index=pages.indexOf(oldpage);
-            pages[index]=page;
+            var url="/api/page/"+pageId;
+            return $http.put(url,page)
+                .then(renderStatus);
+            function renderStatus(response) {
+                return response.data;
+            }
         }
         function deletePage(pageId) {
-            var oldpage = findPageById(pageId);
-            var index =pages.indexOf(oldpage);
-            pages.splice(index,1);
+            var url="/api/page/"+pageId;
+            return $http.delete(url)
+                .then(renderStatus);
+            function renderStatus(response) {
+                return response.data;
+            }
         }
 
 
         function createPage(page,websiteId) {
-            page._id=(new Date().getTime())+"";
             page.websiteId=websiteId;
-            pages.push(page);
+            var url="/api/page";
+            return $http.post(url,page)
+                .then(render);
+            function render(response) {
+                return response;
+            }
         }
     }
 })();
