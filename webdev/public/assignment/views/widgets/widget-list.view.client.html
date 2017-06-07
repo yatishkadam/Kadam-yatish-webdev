@@ -7,7 +7,7 @@
                 <span class="glyphicon glyphicon-plus-sign pull-right"></span>
             </a></h4>
         <hr class="colorgraph">
-        <div wd-dragable>
+        <div wd-dragable callback="model.handleSort(arg1,arg2)">
         <div class="wd-widget"  ng-repeat="widget in model.widgets">
             <div class="wd-widget-toolbar pull-right">
                 <a href="#!/user/{{model.userId}}/websites/{{model.websiteId}}/pages/{{model.pageId}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>

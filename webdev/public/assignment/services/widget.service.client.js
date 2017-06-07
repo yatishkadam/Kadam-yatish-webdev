@@ -8,10 +8,10 @@ function widgetService($http) {
     this.findWidgetsByPageId= findWidgetsByPageId;
     this.updateWidget=updateWidget;
     this.deleteWidget=deleteWidget;
-    //this.createWidget=createWidget;
     this.createWidgetHeader=createWidgetHeader;
     this.createWidgetImage=createWidgetImage;
     this.createWidgetYoutube=createWidgetYoutube;
+    this.sendSortOrder=sendSortOrder;
 
 
     function createWidgetHeader(pageId, widget1) {
@@ -44,13 +44,6 @@ function widgetService($http) {
     }
 
     function findWidgetsByPageId(pageId) {
-        // var results=[];
-        // for (var w in widget){
-        //     if(pageId===widget[w].pageId){
-        //         results.push(widget[w]);
-        //     }
-        // }
-        // return results;
         var url="/api/page/"+pageId+"/widget";
         return $http.get(url)
             .then(renderWidget);
@@ -86,12 +79,12 @@ function widgetService($http) {
             }
     }
 
-
-    // function createWidget(widgets,pageId,widgetType) {
-    //     widgets._id=(new Date().getTime())+"";
-    //     widgets.pageId=pageId;
-    //     widget.widgetType=widgetType;
-    //     widget.push(widgets);
-    // }
+    function sendSortOrder(pageId,from,to) {
+        var url="/api/page/"+pageId+"/reorderWidgets?from="+from+"&to="+to;
+        return $http.get(url)
+            .then(function(response){
+                return response.data;
+            });
+    }
 }
 })();

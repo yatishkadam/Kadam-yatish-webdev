@@ -8,6 +8,7 @@
         model.userId=$routeParams['userId'];
         model.websiteId=$routeParams['websiteId'];
         model.pageId=$routeParams['pageId'];
+        model.handleSort = handleSort;
 
         function init() {
             //model.widgets = widgetService.findWidgetsByPageId(model.pageId);
@@ -22,6 +23,19 @@
         }
         init();
 
+
+        function handleSort(from , to) {
+            if (from===to){
+                return;
+            }
+            widgetService.sendSortOrder(model.pageId,from,to)
+                .then(null,
+                    function (response) {
+                        model.widgets = angular.copy(model.widgets);
+                    }
+                );
+            
+        }
 
 
         function widgetUrl(widget) {
