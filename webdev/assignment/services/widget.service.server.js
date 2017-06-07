@@ -3,13 +3,13 @@ var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: __dirname+'/../../public/assignment/uploads' });
 
 var widgets=[
-    { "_id": "123",  "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-    { "_id": "234",  "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    { "_id": "345",  "widgetType": "IMAGE", "pageId": "321", "width": "100%", "url": "http://lorempixel.com/400/200/"},
-    { "_id": "456",  "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-    { "_id": "567",  "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    { "_id": "678",  "widgetType": "YOUTUBE", "pageId": "321", "width": "100%", "url": "https://youtu.be/AM2Ivdi9c4E" },
-    { "_id": "789",  "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
+    { "_id": "123", "index": 0,  "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
+    { "_id": "234", "index": 1,  "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+    { "_id": "345", "index": 2,  "widgetType": "IMAGE", "pageId": "321", "width": "100%", "url": "http://lorempixel.com/400/200/"},
+    { "_id": "456", "index": 3,  "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+    { "_id": "567", "index": 4,  "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+    { "_id": "678", "index": 5,  "widgetType": "YOUTUBE", "pageId": "321", "width": "100%", "url": "https://youtu.be/AM2Ivdi9c4E" },
+    { "_id": "789", "index": 6,  "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
 ];
 
 app.get("/api/page/:pageId/widget",findWidgetsByPageId);
@@ -29,12 +29,17 @@ function findWidgetsByPageId(req,res) {
             results.push(widgets[w]);
         }
     }
+    results=results.sort(function (w1,w2) {
+        return w1.index>w2.index;
+    });
     res.json(results);
 }
 
 function createWidget(req,res) {
     var widget=req.body;
+    var pageId=req.params.pageId;
     widget._id = (new Date()).getTime() + "";
+    widget.index = findWidgetsByPage(pageId).length;
     widgets.push(widget);
     res.json(widget._id);
 }
@@ -101,6 +106,48 @@ function uploadImage(req, res) {
 
     res.redirect(callbackUrl);
 }
+function reorderWidgets(req,res) {
+    var pageId= req.params.pageId;
+    var start=req.query.from;
+    var end=req.query.to;
+    if (start&&end){
+        var widgetList =findWidgetsByPage(pageId);
+        if (start>end){
+            i=parseInt(end);
+            while(i<=start){
+                if (i == start)
+                    widgetList[start].index=end;
+                else
+                    widgetList[i].index+=1;
+                i+=1;
+            }
+            res.sendStatus(200);
+            return;
+        }
+        else if(end>start){
+            i=parseInt(start);
+            while(i<=end){
+                if (i == start)
+                    widgetList[start].index=end;
+                else
+                    widgetList[i].index-=1;
+                i+=1;
+            }
+            res.sendStatus(200);
+            return;
+        }
+        else if(end===start)
+        {
+            end=start;
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
+
+
+//helper functions
 
 function findWidgetsByPage(pageId){
     var results=[];
@@ -109,20 +156,11 @@ function findWidgetsByPage(pageId){
             results.push(widgets[w]);
         }
     }
-    return results;
-}
-
-function reorderWidgets(req,res) {
-    var pageId= req.params.pageId;
-    var start=req.query.from;
-    var end=req.query.to;
-    if (start&&end){
-        widgets.splice(end, 0,
-            widgets.splice(start, 1)[0]);
-
-        res.sendStatus(200);
-        return;
+    results=results.sort(function (w1,w2) {
+        return w1.index>w2.index;
+    });
+    for (var i in results){
+        results[i].index=i;
     }
-    res.sendStatus(404)
-
+    return results;
 }
