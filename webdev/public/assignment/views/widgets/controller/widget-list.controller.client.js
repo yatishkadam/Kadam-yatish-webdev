@@ -24,11 +24,11 @@
         init();
 
 
-        function handleSort(from , to) {
-            if (from===to){
+        function handleSort(start , end) {
+            if (start===end){
                 return;
             }
-            widgetService.sendSortOrder(model.pageId,from,to)
+            widgetService.sendSortOrder(model.pageId,start,end)
                 .then(null,
                     function (response) {
                         model.widgets = angular.copy(model.widgets);
