@@ -53,6 +53,7 @@
                 .then(renderUser);
             //return the created user details
             function renderUser(response) {
+                console.log("user service"+response.data);
                 return response.data;
             }
         }

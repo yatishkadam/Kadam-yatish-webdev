@@ -26,6 +26,7 @@
 
             function sucess(){
                     model.sucess="updated";
+                $location.url("/user/"+model.userid);
                 }
             function failure(){
                 model.sucess="opps!! something went wrong";
@@ -38,7 +39,7 @@
                 .then(sucess,failure);
 
             function sucess(){
-                $location.url("/");
+                $location.url("/login");
             }
             function failure() {
                 model.sucess="could not delete profile , please try again";

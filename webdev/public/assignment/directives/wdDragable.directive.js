@@ -21,7 +21,7 @@
         }
 
         return {
-            scope: { callback: '&' },
+            scope: { callback: '&myCallback' },
             link: linkFunction
         };
 }
