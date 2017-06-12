@@ -3,7 +3,7 @@ var widgetSchema = mongoose.Schema({
 
     _page       : {type:mongoose.Schema.Types.ObjectId,ref:"pageModel"},
     index       : Number,
-    type        : String,
+    widgetType  : String,
     name        : String,
     text        : String,
     placeholder : String,

@@ -16,7 +16,7 @@ function widgetService($http) {
 
     function createWidgetHeader(pageId, widget1) {
         url="/api/page/"+pageId+"/widget";
-        widget1 = {"type": "HEADING"};
+        widget1 = {"widgetType": "HEADING"};
         widget1.pageId = pageId;
         return $http.post(url,widget1)
             .then(function (response) {
@@ -25,7 +25,7 @@ function widgetService($http) {
     }
     function createWidgetImage(pageId, widget1) {
         url="/api/page/"+pageId+"/widget";
-        widget1 = {"type": "IMAGE", "width": "100%"};
+        widget1 = {"widgetType": "IMAGE", "width": "100%"};
         widget1.pageId = pageId;
         return $http.post(url,widget1)
             .then(function (response) {
@@ -35,7 +35,7 @@ function widgetService($http) {
 
     function createWidgetYoutube(pageId, widget1) {
         url="/api/page/"+pageId+"/widget";
-        widget1 = {"type": "YOUTUBE"};
+        widget1 = {"widgetType": "YOUTUBE"};
         widget1.pageId = pageId;
         return $http.post(url,widget1)
             .then(function (response) {
@@ -55,6 +55,9 @@ function widgetService($http) {
         var url="/api/widget/"+widgetId;
         return $http.get(url)
             .then(function (response) {
+                // console.log("_________client Widget__________");
+                // console.log(response);
+                // console.log(response.data);
                 return response.data;
             });
     }
