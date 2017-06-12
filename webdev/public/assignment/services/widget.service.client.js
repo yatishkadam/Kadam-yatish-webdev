@@ -16,7 +16,7 @@ function widgetService($http) {
 
     function createWidgetHeader(pageId, widget1) {
         url="/api/page/"+pageId+"/widget";
-        widget1 = { "_id": "", "index": "", "widgetType": "HEADING", "pageId": "", "size": "", "text": "", "name": ""};
+        widget1 = {"type": "HEADING"};
         widget1.pageId = pageId;
         return $http.post(url,widget1)
             .then(function (response) {
@@ -25,7 +25,7 @@ function widgetService($http) {
     }
     function createWidgetImage(pageId, widget1) {
         url="/api/page/"+pageId+"/widget";
-        widget1 = { "_id": "","index": "", "widgetType": "IMAGE", "pageId": "", "width": "100%", "url": "", "text": "", "name": "" };
+        widget1 = {"type": "IMAGE", "width": "100%"};
         widget1.pageId = pageId;
         return $http.post(url,widget1)
             .then(function (response) {
@@ -35,7 +35,7 @@ function widgetService($http) {
 
     function createWidgetYoutube(pageId, widget1) {
         url="/api/page/"+pageId+"/widget";
-        widget1 = { "_id": "","index": "", "widgetType": "YOUTUBE", "pageId": "", "width": "", "url": "", "text": "", "name": ""};
+        widget1 = {"type": "YOUTUBE"};
         widget1.pageId = pageId;
         return $http.post(url,widget1)
             .then(function (response) {

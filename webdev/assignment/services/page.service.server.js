@@ -1,12 +1,5 @@
 var app= require("../../express");
 var pageModel = require("../models/page/page.model.server");
-var pages=[
-    { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-    { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-    { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" },
-    { "_id": "523", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-
-];
 
 app.get("/api/pages/:websiteId",findAllPagesForWebsite);
 app.get("/api/page/:pageId",findPageById);
@@ -27,7 +20,7 @@ function findPageById(req,res) {
     var pageId=req.params.pageId;
     pageModel.findPageById(pageId)
         .then(function (page) {
-            console.log(page);
+            //console.log(page);
             res.json(page);
         });
 }
@@ -64,7 +57,7 @@ function createPage(req,res) {
     var page=req.body;
     return pageModel.createPage(page)
         .then(function (page) {
-            console.log(page);
+            //console.log(page);
             res.sendStatus(200);
         });
 }
