@@ -1,5 +1,5 @@
 var app = require("../../express");
-var websiteModel= require("../models/website/website.model.server")
+var websiteModel= require("../models/website/website.model.server");
 var websites=[
     { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
     { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
@@ -57,7 +57,8 @@ function deleteWebsite(req,res) {
     var userId=req.params.userId;
     websiteModel.deleteWebsite(websiteId,userId)
         .then(function (response) {
-            res.json(response);
+            //console.log(response);
+            res.sendStatus(200);
         });
 }
 
