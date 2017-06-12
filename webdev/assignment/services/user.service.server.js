@@ -48,7 +48,7 @@ function updateUser(req,res) {
     var userId=req.params['userId'];
     userModel.updateUser(userId,newUser)
         .then(function (user) {
-            console.log(user);
+            //console.log(user);
             res.json(user);
         });
     // for (var u in users) {
