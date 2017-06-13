@@ -31,14 +31,6 @@ function deleteUser(req,res) {
         .then(function (status) {
             res.json(status);
         });
-    // for (var u in users) {
-    //     if (users[u]._id === userId) {
-    //         users.splice(u,1);
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }
 
 
@@ -51,14 +43,6 @@ function updateUser(req,res) {
             //console.log(user);
             res.json(user);
         });
-    // for (var u in users) {
-    //     if (users[u]._id === userId) {
-    //         users[u]=newUser;
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
 }
 
 //function to find the user by id

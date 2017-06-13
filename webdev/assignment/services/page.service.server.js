@@ -4,7 +4,7 @@ var pageModel = require("../models/page/page.model.server");
 app.get("/api/pages/:websiteId",findAllPagesForWebsite);
 app.get("/api/page/:pageId",findPageById);
 app.put("/api/page/:pageId",updatePage);
-app.delete("/api/page/:pageId",deletePage);
+app.delete("/api/website/:websiteId/page/:pageId",deletePage);
 app.post("/api/page",createPage);
 
 function findAllPagesForWebsite(req,res) {
@@ -39,7 +39,8 @@ function updatePage(req,res) {
 
 function deletePage(req,res) {
     var pageId=req.params.pageId;
-    return pageModel.deletePage(pageId)
+    var websiteId= req.params.websiteId;
+    return pageModel.deletePage(websiteId,pageId)
         .then(function (status) {
             res.sendStatus(200);
         });

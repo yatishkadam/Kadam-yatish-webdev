@@ -8,6 +8,8 @@ websiteModel.findAllWebsiteForUser=findAllWebsiteForUser;
 websiteModel.findWebsiteById=findWebsiteById;
 websiteModel.updateWebsite=updateWebsite;
 websiteModel.deleteWebsite=deleteWebsite;
+websiteModel.addPage=addPage;
+websiteModel.deletePageForWebsite=deletePageForWebsite;
 
 
 module.exports=websiteModel;
@@ -60,7 +62,8 @@ function deletePageForWebsite(websiteId,pageId) {
         .findById(websiteId)
         .then(function (website) {
             var index= website.pages.indexOf(pageId);
-            wesbite.pages.splice(index,1);
+            //console.log(index);
+            website.pages.splice(index,1);
             return website.save();
         });
 }

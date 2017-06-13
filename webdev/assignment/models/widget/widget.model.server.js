@@ -13,7 +13,9 @@ widgetModel.reorderwidgets=reorderwidgets;
 module.exports = widgetModel;
 
 function createWidget(widget) {
+    //console.log(widget);
     return widgetModel.create(widget);
+
 }
 
 function findAllWidgetsForPage(pageId){
