@@ -7,48 +7,61 @@
     <link href="assignment/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
     <link href="assignment/vendor/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-    <!--<link href="assignment/css/style.css" rel="stylesheet">-->
+    <link href="assignment/css/style.css" rel="stylesheet">
     <link href="assignment/vendor/bootstrap/dist/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
-            /* The hero image */
-            .hero-image {
-                /* The image used */
-                background-image: url("assignment/css/homebg.JPG");
+        body{
+            background-image: url("assignment/css/homebg.JPG");
+            /* Position and center the image to scale nicely on all screens */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        .card1 {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+        }
 
-                /* Set a specific height */
-                height: 50%;
+        .container {
+            padding: 0 16px;
+        }
 
-                /* Position and center the image to scale nicely on all screens */
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                position: relative;
-            }
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
 
-            /* Place text in the middle of the image */
-            .hero-text {
-                text-align: center;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                color: white;
-            }
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
     </style>
 
 </head>
-<body><div class="hero-image">
-    <div class="hero-text">
-        <h1>I am John Doe</h1>
-        <p>And I'm a Photographer</p>
-        <button>Hire me</button>
-    </div>
-</div>
+<body>
     <div class="container-fluid">
-
-        <!--<div class="card card-container">
-
             <div class="row">
                 <div class="col-lg-7 col-sm-7 col-md-7 col-xs-7">
                     <h1>Web Dev Course Home Page</h1>
@@ -69,21 +82,11 @@
                     </ul>
                 </div>
                 <div class="col-lg-5 col-sm-5 col-md-5 col-xs-5">
-                    <div class="card card-container">
-                        <img src="assignment/css/profilepic.jpg" alt="Yatish" style="width:100%">
-                        <div class="container">
-                            <h3>Yatish kadam</h3>
-                            <p>Northeastern University</p>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <p><button>Contact</button></p>
-                        </div>
-                    </div>
+
+
+
                 </div>
-            </div>
-        </div>-->
+        </div>
     </div>
 </body>
 </html>
