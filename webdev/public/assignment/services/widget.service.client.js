@@ -11,12 +11,23 @@ function widgetService($http) {
     this.createWidgetHeader=createWidgetHeader;
     this.createWidgetImage=createWidgetImage;
     this.createWidgetYoutube=createWidgetYoutube;
+    this.createWidgetText=createWidgetText;
     this.sendSortOrder=sendSortOrder;
+    this.createWidgetHtml=createWidgetHtml;
 
 
     function createWidgetHeader(pageId, widget1) {
         url="/api/page/"+pageId+"/widget";
         widget1 = {"widgetType": "HEADING"};
+        widget1.pageId = pageId;
+        return $http.post(url,widget1)
+            .then(function (response) {
+                return response.data;
+            });
+    }
+    function createWidgetText(pageId, widget1) {
+        url="/api/page/"+pageId+"/widget";
+        widget1 = {"widgetType": "TEXT"};
         widget1.pageId = pageId;
         return $http.post(url,widget1)
             .then(function (response) {
@@ -32,7 +43,15 @@ function widgetService($http) {
                 return response.data;
             });
     }
-
+    function createWidgetHtml(pageId, widget1) {
+        url="/api/page/"+pageId+"/widget";
+        widget1 = {"widgetType": "HTML"};
+        widget1.pageId = pageId;
+        return $http.post(url,widget1)
+            .then(function (response) {
+                return response.data;
+            });
+    }
     function createWidgetYoutube(pageId, widget1) {
         url="/api/page/"+pageId+"/widget";
         widget1 = {"widgetType": "YOUTUBE"};

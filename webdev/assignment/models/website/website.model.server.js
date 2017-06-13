@@ -43,3 +43,24 @@ function deleteWebsite(websiteId,userId) {
             return;
         });
 }
+
+//add pages
+function addPage(websiteId,pageId) {
+    return websiteModel
+        .findById(websiteId)
+        .then(function (website) {
+            website.pages.push(pageId);
+            return website.save();
+        });
+}
+
+//delete the pages after deleteing the page
+function deletePageForWebsite(websiteId,pageId) {
+    return websiteModel
+        .findById(websiteId)
+        .then(function (website) {
+            var index= website.pages.indexOf(pageId);
+            wesbite.pages.splice(index,1);
+            return website.save();
+        });
+}
