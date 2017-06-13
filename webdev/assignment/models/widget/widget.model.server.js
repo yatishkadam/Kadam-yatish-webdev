@@ -43,29 +43,31 @@ function reorderwidgets(pageId,start,end){
         .sort({index: 1})
         .then(
             function (widgets) {
-
-                for (var i in widgets) {
-
-                    if ((i >= start && i <= end) ||
-                        (i >= end && i <= start)) {
-
+                if (start > end) {
+                    i = parseInt(end);
+                    while (i <= start) {
                         if (i == start)
-                            widgets[i].index = end;
-                        else if (start > end) {
-                            widgets[i].index += i + 1;
-                        }
-                        else {
-                            widgets[i].index = i - 1;
-                        }
+                            widgets[start].index = end;
+                        else
+                            widgets[i].index += 1;
+                        widgets[i].save();
+                        i += 1;
                     }
-                    else {
-                        widgets[i].index = i;
-                    }
-
-                    widgets[i].save();
                 }
-
+                else if (end > start) {
+                    i = parseInt(start);
+                    while (i <= end) {
+                        if (i == start)
+                            widgets[start].index = end;
+                        else widgets[i].index -= 1;
+                        i += 1;
+                        widgets[i].save();
+                    }
+                }
+                else if (end === start) {
+                    end = start;
+                    return;
+                }
                 return;
-            }
-        );
+            });
 }

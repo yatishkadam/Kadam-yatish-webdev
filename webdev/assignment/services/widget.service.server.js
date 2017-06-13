@@ -146,6 +146,42 @@ function reorderWidgets(req,res) {
 //                     end=start;
 //                     res.sendStatus(200);
 //                     return;
+//                 }if (start>end){
+//                     console.log("____________ start>>>end _____________");
+//                     i=parseInt(end);
+//                     while(i<=start){
+//                         if (i == start)
+//                             widgetList[start].index=end;
+//                         else
+//                             widgetList[i].index+=1;
+//                         i+=1;
+//                     }
+//                     updateWidgetList(widgetList)
+//                         .then(function () {
+//                             res.sendStatus(200);
+//                         });
+//                 }
+//                 else if(end>start){
+//                     console.log("____________ end>>>start _____________");
+//                     i=parseInt(start);
+//                     while(i<=end){
+//                         if (i == start)
+//                             widgetList[start].index=end;
+//                         else
+//                             widgetList[i].index-=1;
+//                         i+=1;
+//                     }
+//                     updateWidgetList(widgetList)
+//                         .then(function () {
+//                             console.log("done");
+//                             res.sendStatus(200);
+//                         });
+//                 }
+//                 else if(end===start)
+//                 {
+//                     end=start;
+//                     res.sendStatus(200);
+//                     return;
 //                 }
 //         });
 //     }
