@@ -11,9 +11,45 @@
             findUserByUsername:findUserByUsername,
             createUser:createUser,
             updateUser:updateUser,
-            deleteUser:deleteUser
+            deleteUser:deleteUser,
+            login:login,
+            loggedin:loggedin,
+            logout:logout
         };
         return api;
+
+        //function to login
+        function login(username,password) {
+            var url="/api/user/login";
+            credentials={
+                username:username,
+                password:password
+            };
+            return $http.post(url,credentials)
+                .then(function (response) {
+                   return response.data;
+                });
+        }
+
+        //function to tell server to logout
+        function logout() {
+            var url="/api/logout";
+            return $http.post(url)
+                .then(function (response) {
+                   return response.data;
+                });
+        }
+
+        //function to get if looged in 
+        function loggedin() {
+            var url ="/api/loggedin";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+
 
         //function to delete
         function deleteUser(userId) {

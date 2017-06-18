@@ -8,12 +8,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#!/user/{{model.userId}}/websites" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
+            <a href="#!/websites" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
             <a class="navbar-brand"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#!/user/{{model.userId}}"><span class="glyphicon glyphicon-user"> Profile</span></a></li>
+                <li><a href="#!/profile"><span class="glyphicon glyphicon-user"> Profile</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#!/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -41,8 +41,8 @@
                 <div class="listov">
                     <ul class="list-group">
                         <li ng-repeat="website in model.websites" class="list-group-item">
-                            <a href="#!/user/{{model.userId}}/websites/{{website._id}}/pages">{{website.name}}</a>
-                            <a href="#!/user/{{model.userId}}/websites/{{website._id}}">
+                            <a href="#!/websites/{{website._id}}/pages">{{website.name}}</a>
+                            <a href="#!/websites/{{website._id}}">
                                 <span class="pull-right glyphicon glyphicon-cog"></span></a></li>
                      </ul>
                 </div>

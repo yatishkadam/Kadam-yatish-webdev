@@ -41,7 +41,7 @@
                     .then(renderUser);
                 //change location after create user
                 function renderUser(user) {
-                    $location.url('/user/'+user._id);
+                    $location.url('/profile');
                 }
             }
         }

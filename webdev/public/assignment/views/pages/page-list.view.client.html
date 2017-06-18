@@ -7,12 +7,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#!/user/{{model.userId}}/websites" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
+            <a href="#!/websites" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
             <span class="navbar-brand"></span>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#!/user/{{model.userId}}"><span class="glyphicon glyphicon-user"> Profile</span></a></li>
+                <li><a href="#!/profile"><span class="glyphicon glyphicon-user"> Profile</span></a></li>
                 <li><a href="#!/login"><span class="glyphicon glyphicon-log-out"> Logout</span></a> </li>
             </ul>
         </div><!--/.nav-collapse -->
@@ -23,12 +23,12 @@
 
 <div class="container-fluid">
     <div class="card card-container1">
-        <h4>Pages<a href="#!/user/{{model.userId}}/websites/{{model.websiteId}}/pages/new">
+        <h4>Pages<a href="#!/websites/{{model.websiteId}}/pages/new">
             <span class="gly-right glyphicon glyphicon-plus-sign pull-right"></span></a></h4>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="page in model.pages">
-                <a href="#!/user/{{model.userId}}/websites/{{model.websiteId}}/pages/{{page._id}}/widget">{{page.name}}</a>
-                <a href="#!/user/{{model.userId}}/websites/{{model.websiteId}}/pages/{{page._id}}"> <span class="pull-right glyphicon glyphicon-cog"></span></a></li>
+                <a href="#!/websites/{{model.websiteId}}/pages/{{page._id}}/widget">{{page.name}}</a>
+                <a href="#!/websites/{{model.websiteId}}/pages/{{page._id}}"> <span class="pull-right glyphicon glyphicon-cog"></span></a></li>
         </ul>
     </div>
 </div>
@@ -41,7 +41,7 @@
 <nav class="navbar navbar-custom navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="row navbar-text navbar-right" style="margin-right: 10px;">
-            <a href="#!/user/{{model.userId}}"><span class="glyphicon glyphicon-user"></span> </a>
+            <a href="#!/profile"><span class="glyphicon glyphicon-user"></span> </a>
         </div>
     </div>
 </nav>

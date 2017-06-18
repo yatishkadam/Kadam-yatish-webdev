@@ -3,10 +3,10 @@
         .module("WAM")
         .controller("pageEditController",pageEditController);
 
-    function pageEditController($location,$routeParams,websiteService,pageService) {
+    function pageEditController($location,$routeParams,websiteService,pageService,currentUser) {
 
         var model=this;
-        model.userId=$routeParams['userId'];
+        model.userId=currentUser._id;//$routeParams['userId'];
         model.websiteId=$routeParams['websiteId']
         model.pageId=$routeParams['pageId'];
 
@@ -25,7 +25,7 @@
             pageService.updatePage(pageId,page)
                 .then(updatedPage);
             function updatedPage() {
-                $location.url("/user/"+model.userId+"/websites/"+model.websiteId+"/pages");
+                $location.url("/websites/"+model.websiteId+"/pages");
             }
         }
 
@@ -33,7 +33,7 @@
             pageService.deletePage(model.websiteId,pageId)
                 .then(updateLocation);
             function updateLocation() {
-                $location.url("/user/"+model.userId+"/websites/"+model.websiteId+"/pages");
+                $location.url("/websites/"+model.websiteId+"/pages");
             }
         }
     }

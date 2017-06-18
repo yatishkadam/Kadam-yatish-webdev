@@ -3,10 +3,10 @@
         .module("WAM")
         .controller("websiteEditController",websiteEditController);
 
-    function websiteEditController($location,$routeParams,websiteService) {
+    function websiteEditController($location,$routeParams,websiteService,currentUser) {
 
         var model=this;
-        model.userId=$routeParams['userId'];
+        model.userId=currentUser._id;//$routeParams['userId'];
         model.websiteId=$routeParams['websiteId'];
 
         function init() {
@@ -33,7 +33,7 @@
             websiteService.updateWebsite(websiteId,website)
                 .then(render);
             function render() {
-                $location.url("/user/"+model.userId+"/websites");
+                $location.url("/websites");
             }
         }
 
@@ -41,7 +41,7 @@
             websiteService.deleteWebsite(websiteId,model.userId)
                 .then(render);
             function render() {
-                $location.url("/user/"+model.userId+"/websites");
+                $location.url("/websites");
             }
         }
     }

@@ -8,11 +8,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#!/user/{{model.userId}}" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
+            <a href="#!/profile" class="navbar-brand glyphicon glyphicon-chevron-left"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#!/user/{{model.userId}}">
+                <li><a href="#!/profile">
                     <span class="glyphicon glyphicon-user"> Profile</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -23,13 +23,13 @@
 </nav>
 <div class="container-fluid">
     <div class="card card-container1">
-        <h4>Website List <a  href="#!/user/{{model.userId}}/websites/new">
+        <h4>Website List <a  href="#!/websites/new">
             <span class="glyphicon glyphicon-plus-sign pull-right" style="margin-right: 15px"></span></a></h4>
     <ul class="list-group">
         <li class="active list-group-item">Name<span class="pull-right">Edit</span></li>
         <li ng-repeat="website in model.websites" class="list-group-item">
-            <a href="#!/user/{{model.userId}}/websites/{{website._id}}/pages">{{website.name}}</a>
-            <a href="#!/user/{{model.userId}}/websites/{{website._id}}">
+            <a href="#!/websites/{{website._id}}/pages">{{website.name}}</a>
+            <a href="#!/websites/{{website._id}}">
                 <span class="pull-right glyphicon glyphicon-cog"></span></a></li>
     </ul>
     </div>

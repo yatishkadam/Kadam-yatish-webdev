@@ -12,10 +12,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#!/user/{{model.userid}}/websites"><span class="glyphicon glyphicon-globe"> Websites</span></a></li>
+                <li><a href="#!/websites"><span class="glyphicon glyphicon-globe"> Websites</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a ng-click="model.logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
 
         </div><!--/.nav-collapse -->

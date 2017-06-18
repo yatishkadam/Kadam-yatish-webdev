@@ -2,9 +2,9 @@
     angular
         .module("WAM")
         .controller('widgetEditController',widgetEditController);
-    function widgetEditController($location,$routeParams,widgetService) {
+    function widgetEditController($location,$routeParams,widgetService,currentUser) {
         var model=this;
-        model.userId=$routeParams['userId'];
+        model.userId=currentUser._id;//$routeParams['userId'];
         model.websiteId=$routeParams['websiteId'];
         model.widgetId=$routeParams['widgetId'];
         model.pageId=$routeParams.pageId;
@@ -25,14 +25,14 @@
             widgetService.updateWidget(widgetId, widget)
                 .then(render);
             function render() {
-                $location.url("/user/"+model.userId+"/websites/"+model.websiteId+"/pages/"+model.pageId+"/widget");
+                $location.url("/websites/"+model.websiteId+"/pages/"+model.pageId+"/widget");
             }
         }
 
         function deleteWidget(widgetId){
             widgetService.deleteWidget(widgetId)
                 .then(function () {
-                    $location.url("/user/"+model.userId+"/websites/"+model.websiteId+"/pages/"+model.pageId+"/widget");
+                    $location.url("/websites/"+model.websiteId+"/pages/"+model.pageId+"/widget");
                 });
         }
     }
