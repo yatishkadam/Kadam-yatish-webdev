@@ -14,7 +14,8 @@
             deleteUser:deleteUser,
             login:login,
             loggedin:loggedin,
-            logout:logout
+            logout:logout,
+            register:register
         };
         return api;
 
@@ -31,6 +32,17 @@
                 });
         }
 
+
+
+        //funtion to register user
+        function register(user) {
+            var url="/api/register";
+            return $http.post(url,user)
+                .then(function (response) {
+                    return response.data
+                });
+
+        }
         //function to tell server to logout
         function logout() {
             var url="/api/logout";

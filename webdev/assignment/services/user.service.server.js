@@ -17,6 +17,20 @@ app.delete ("/api/user/:userId",deleteUser);
 app.get    ("/api/loggedin",loggedin);
 app.post   ("/api/logout",logout);
 app.post   ("/api/user/login", passport.authenticate('local'),login);
+app.post   ("/api/register",register);
+
+
+function register(req, res) {
+    var userObj = req.body;
+    userModel
+        .createUser(userObj)
+        .then(function (user) {
+            req
+                .login(user, function (status) {
+                    res.send(status);
+                });
+        });
+}
 
 
 function localStrategy(username,password, done) {

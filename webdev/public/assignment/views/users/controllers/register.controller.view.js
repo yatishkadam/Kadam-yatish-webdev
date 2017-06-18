@@ -37,10 +37,10 @@
 
                 //to create user
                 userService
-                    .createUser(newUser)
+                    .register(newUser)
                     .then(renderUser);
                 //change location after create user
-                function renderUser(user) {
+                function renderUser() {
                     $location.url('/profile');
                 }
             }

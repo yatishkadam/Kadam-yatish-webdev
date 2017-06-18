@@ -6,7 +6,12 @@
     function configuration($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'home.html'
+                templateUrl: 'views/home/home.html',
+                controller:'homeController',
+                controllerAs:'model',
+                resolve:{
+                    currentUser : checkCurrentUser
+                }
             })
             .when('/login',{
                 templateUrl:'views/users/login.view.client.html',
@@ -117,6 +122,21 @@
                 if (user==='0') {
                     deferred.reject();
                     $location.url('/login');
+                }
+                else{
+                    deferred.resolve(user);
+                }
+            });
+        return deferred.promise;
+    }
+    function checkCurrentUser(userService,$q,$location) {
+        var deferred=$q.defer();
+        userService
+            .loggedin()
+            .then(function (user) {
+                if (user==='0') {
+                    deferred.resolve({});
+                    //$location.url('/login');
                 }
                 else{
                     deferred.resolve(user);
