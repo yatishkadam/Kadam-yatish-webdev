@@ -3,7 +3,7 @@
         .module("WAM")
         .controller("websiteListController",websiteListController);
 
-    function websiteListController($routeParams,websiteService,currentUser) {
+    function websiteListController($routeParams,websiteService,currentUser,userService,$location) {
 
         var model=this;
         model.userId=currentUser._id;//$routeParams['userId'];
@@ -17,5 +17,12 @@
             }
         }
         init();
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url("/login");
+                });
+        }
     }
 })();

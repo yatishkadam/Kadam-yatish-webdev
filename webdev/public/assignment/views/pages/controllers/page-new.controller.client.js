@@ -3,11 +3,12 @@
         .module("WAM")
         .controller("pageNewController",pageNewController);
 
-    function pageNewController($location,$routeParams,websiteService,pageService,currentUser) {
+    function pageNewController($location,$routeParams,websiteService,pageService,currentUser,userService) {
 
         var model=this;
         model.userId=currentUser._id;//$routeParams['userId'];
         model.websiteId=$routeParams['websiteId'];
+        model.logout=logout;
 
         function init() {
             pageService.findAllPagesForWebsite(model.websiteId)
@@ -26,6 +27,13 @@
             function newlocation(response) {
                 $location.url("/websites/"+model.websiteId+"/pages");
             }
+        }
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url("/login");
+                });
         }
 
     }

@@ -3,7 +3,7 @@
         .module("WAM")
         .controller("websiteNewController",websiteNewController);
 
-    function websiteNewController($location,$routeParams,websiteService,currentUser) {
+    function websiteNewController($location,$routeParams,websiteService,currentUser,userService) {
 
         var model=this;
         model.userId=currentUser._id;//$routeParams['userId'];
@@ -26,6 +26,13 @@
             function renders() {
                 $location.url("/websites");
             }
+        }
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url("/login");
+                });
         }
 
     }

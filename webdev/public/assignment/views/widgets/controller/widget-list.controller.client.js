@@ -3,7 +3,7 @@
         .module('WAM')
         .controller('widgetListController', widgetListController);
 
-    function widgetListController($sce,widgetService,$routeParams,currentUser) {
+    function widgetListController($sce,widgetService,$routeParams,currentUser,userService,$location) {
         var model = this;
         model.userId=currentUser._id//$routeParams['userId'];
         model.websiteId=$routeParams['websiteId'];
@@ -53,6 +53,13 @@
         function trust(html) {
             // scrubbing the html
             return $sce.trustAsHtml(html);
+        }
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url("/login");
+                });
         }
     }
 })();

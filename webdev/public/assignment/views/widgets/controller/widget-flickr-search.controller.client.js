@@ -2,7 +2,7 @@
     angular
         .module("WAM")
         .controller("flickrImageSearchController",flickrImageSearchController);
-function flickrImageSearchController(flickrService,widgetService,$location,$routeParams,currentUser) {
+function flickrImageSearchController(flickrService,widgetService,$location,$routeParams,currentUser,userService) {
 
     var model =this;
     model.userId=currentUser._id;//$routeParams['userId'];
@@ -43,6 +43,13 @@ function flickrImageSearchController(flickrService,widgetService,$location,$rout
             });
 
         //https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_m.jpg" width="250px" height="250px" style="padding: 5px
+    }
+    function logout() {
+        userService
+            .logout()
+            .then(function () {
+                $location.url("/login");
+            });
     }
 
 

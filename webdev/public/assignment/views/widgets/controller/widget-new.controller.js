@@ -2,7 +2,7 @@
     angular
         .module("WAM")
         .controller('widgetNewController',widgetNewController);
-    function widgetNewController($location,$routeParams,widgetService,currentUser) {
+    function widgetNewController($location,$routeParams,widgetService,currentUser,userService) {
         var model=this;
         model.userId=currentUser._id;//$routeParams['userId'];
         model.websiteId=$routeParams['websiteId'];
@@ -43,6 +43,13 @@
             .then(function (Id) {
                 $location.url('/websites/'+model.websiteId+'/pages/'+model.pageId+'/widget/'+Id);
             });
+        }
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url("/login");
+                });
         }
 
 
