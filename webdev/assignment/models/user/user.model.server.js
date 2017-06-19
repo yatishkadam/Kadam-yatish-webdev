@@ -11,12 +11,17 @@ userModel.updateUser=updateUser;
 userModel.deleteUser=deleteUser;
 userModel.addWebsite=addWebsite;
 userModel.deleteWebsiteUser=deleteWebsiteUser;
+userModel.findUserByGoogleId=findUserByGoogleId;
 module.exports= userModel;
 
 // crud and few other functions that can be performed on the database
 //create user
 function createUser(user) {
     return userModel.create(user);
+}
+
+function findUserByGoogleId(googleId) {
+    return userModel.findOne({'google.id':googleId});
 }
 
 //find a particular user

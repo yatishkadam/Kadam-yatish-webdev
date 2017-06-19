@@ -11,12 +11,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li ng-show="model.user._id"><a href="#!/profile"><span class="glyphicon glyphicon-globe"> Profile</span></a></li>
+                <li ng-show="model.user._id"><a href="#!/profile"><span class="glyphicon glyphicon-user"> Profile</span></a></li>
                 <li ng-show="model.user._id"><a href="#!/websites"><span class="glyphicon glyphicon-globe"> Websites</span></a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="!model.user._id"><a href="#!/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li ng-show="model.user._id"><a href="#!/login"><span class="glyphicon glyphicon-log-out"> Logout</span></a></li>
+
             </ul>
 
         </div><!--/.nav-collapse -->

@@ -1,14 +1,11 @@
 var app=require('../../express');
 var passport = require('passport');
 var LocalStrategy= require('passport-local').Strategy;
-
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
-
 var userModel = require("../../assignment/models/user/user.model.server");
-
-
 app.get    ("/api/user",findAllUsers);
 app.post   ("/api/user",createUser);
 app.put    ("/api/user/:userId",updateUser);
@@ -18,21 +15,21 @@ app.get    ("/api/loggedin",loggedin);
 app.post   ("/api/logout",logout);
 app.post   ("/api/user/login", passport.authenticate('local'),login);
 app.post   ("/api/register",register);
+app.get    ("/auth/google",passport.authenticate('google',{scope:['profile','email']}));
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/assignment/index.html#!/',
+        failureRedirect: '/#/login'
+    }));
 
 
-function register(req, res) {
-    var userObj = req.body;
-    userModel
-        .createUser(userObj)
-        .then(function (user) {
-            req
-                .login(user, function (status) {
-                    res.send(status);
-                });
-        });
-}
 
-
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
+passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 function localStrategy(username,password, done) {
     userModel.findUserByCredentials(username,password)
         .then(function (user) {
@@ -47,6 +44,55 @@ function localStrategy(username,password, done) {
 
             }
         );
+}
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if(user) {
+                    return done(null, user);
+                } else {
+                    var email = profile.emails[0].value;
+                    var emailParts = email.split("@");
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newGoogleUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
+
+
+function register(req, res) {
+    var userObj = req.body;
+    userModel
+        .createUser(userObj)
+        .then(function (user) {
+            req
+                .login(user, function (status) {
+                    res.send(status);
+                });
+        });
 }
 
 function logout(req,res) {
