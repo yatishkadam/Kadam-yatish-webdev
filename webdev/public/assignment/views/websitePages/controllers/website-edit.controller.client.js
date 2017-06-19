@@ -8,6 +8,7 @@
         var model=this;
         model.userId=currentUser._id;//$routeParams['userId'];
         model.websiteId=$routeParams['websiteId'];
+        model.logout=logout;
 
         function init() {
 
@@ -30,10 +31,17 @@
         model.deleteWebsite=deleteWebsite;
 
         function updateWebsite(websiteId,website) {
-            websiteService.updateWebsite(websiteId,website)
-                .then(render);
-            function render() {
-                $location.url("/websites");
+            //console.log(website.name);
+            if (website.name===""){
+                model.error="please enter a name";
+                return ;
+            }
+            else {
+                websiteService.updateWebsite(websiteId,website)
+                    .then(render);
+                function render() {
+                    $location.url("/websites");
+                }
             }
         }
 

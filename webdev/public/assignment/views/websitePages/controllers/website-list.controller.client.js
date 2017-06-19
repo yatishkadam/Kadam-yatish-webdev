@@ -3,10 +3,11 @@
         .module("WAM")
         .controller("websiteListController",websiteListController);
 
-    function websiteListController($routeParams,websiteService,currentUser,userService,$location) {
+    function websiteListController($location,websiteService,currentUser,userService) {
 
         var model=this;
         model.userId=currentUser._id;//$routeParams['userId'];
+        model.logout=logout;
 
         function init() {
             websiteService.findAllwebsiteForUser(model.userId)

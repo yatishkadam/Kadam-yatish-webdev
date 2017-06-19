@@ -9,6 +9,7 @@
         model.websiteId=$routeParams['websiteId'];
         model.pageId=$routeParams['pageId'];
         model.handleSort = handleSort;
+        model.logout=logout;
 
         function init() {
             //model.widgets = widgetService.findWidgetsByPageId(model.pageId);

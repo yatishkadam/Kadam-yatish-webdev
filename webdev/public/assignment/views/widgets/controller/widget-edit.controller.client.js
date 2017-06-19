@@ -8,6 +8,7 @@
         model.websiteId=$routeParams['websiteId'];
         model.widgetId=$routeParams['widgetId'];
         model.pageId=$routeParams.pageId;
+        model.logout=logout;
 
         function init() {
             //model.widget =widgetService.findWidgetById(model.widgetId);

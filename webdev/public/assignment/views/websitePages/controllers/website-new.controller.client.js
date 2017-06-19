@@ -7,6 +7,7 @@
 
         var model=this;
         model.userId=currentUser._id;//$routeParams['userId'];
+        model.logout=logout;
 
         function init() {
             //find all the website for a user
@@ -21,10 +22,20 @@
 
         //create new website
         function createWebsite(website) {
-            websiteService.createWebsite(website,model.userId)
-                .then(renders);
-            function renders() {
-                $location.url("/websites");
+            if (typeof website==='undefined'){
+                model.error="please enter the details";
+                return;
+            }
+            else if (typeof website.name==='undefined'){
+                model.error="please enter a name";
+                return ;
+            }
+            else{
+                websiteService.createWebsite(website,model.userId)
+                    .then(renders);
+                function renders() {
+                    $location.url("/websites");
+                }
             }
         }
         function logout() {

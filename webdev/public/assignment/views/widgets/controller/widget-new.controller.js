@@ -12,6 +12,7 @@
         model.createWidgetYoutube=createWidgetYoutube;
         model.createWidgetHtml=createWidgetHtml;
         model.createWidgetText=createWidgetText;
+        model.logout=logout;
 
         function createWidgetHeader(widget) {
              widgetService.createWidgetHeader(model.pageId, widget)

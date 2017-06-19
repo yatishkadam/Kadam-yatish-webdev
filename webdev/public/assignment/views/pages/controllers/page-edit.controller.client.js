@@ -23,10 +23,16 @@
         model.deletePage=deletePage;
 
         function updatePage(pageId,page) {
+            if (page.name===""){
+                model.error="please enter a name";
+                return ;
+            }
+            else {
             pageService.updatePage(pageId,page)
                 .then(updatedPage);
             function updatedPage() {
-                $location.url("/websites/"+model.websiteId+"/pages");
+                $location.url("/websites/" + model.websiteId + "/pages");
+            }
             }
         }
 

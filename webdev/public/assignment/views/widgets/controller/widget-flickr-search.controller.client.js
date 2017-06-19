@@ -11,6 +11,7 @@ function flickrImageSearchController(flickrService,widgetService,$location,$rout
     var widgetId=$routeParams.widgetId;
     model.searchPhotos =searchPhotos;
     model.selectPhoto=selectPhoto;
+    model.logout=logout;
     function init() {
         widgetService.findWidgetById(widgetId)
             .then(function (widget) {

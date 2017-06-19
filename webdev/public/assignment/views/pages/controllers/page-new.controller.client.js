@@ -21,11 +21,22 @@
         model.createPage=createPage;
 
         function createPage(page) {
+            //console.log(page);
+            if (typeof page==='undefined'){
+                model.error="please enter the details";
+                return;
+            }
+            else if (typeof page.name==='undefined'){
+                model.error="please enter a name";
+                return ;
+            }
+            else {
 
-            pageService.createPage(page,model.websiteId)
-                .then(newlocation);
-            function newlocation(response) {
-                $location.url("/websites/"+model.websiteId+"/pages");
+                pageService.createPage(page, model.websiteId)
+                    .then(newlocation);
+                function newlocation(response) {
+                    $location.url("/websites/" + model.websiteId + "/pages");
+                }
             }
         }
         function logout() {
