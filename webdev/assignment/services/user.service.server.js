@@ -86,7 +86,7 @@ function googleStrategy(token, refreshToken, profile, done) {
 
 function register(req, res) {
     var userObj = req.body;
-    userObj.password = bcrypt.hashSync(user.password);
+    userObj.password = bcrypt.hashSync(userObj.password);
     userModel
         .createUser(userObj)
         .then(function (user) {
